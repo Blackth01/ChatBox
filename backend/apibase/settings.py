@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'usuario.apps.UsuarioConfig',
+    'categoria.apps.CategoriaConfig',
+    'sala.apps.SalaConfig',
+    'mensagem.apps.MensagemConfig',
     'rest_framework',
 ]
 
