@@ -4,27 +4,26 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      List
+      Listagem de Usuarios
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-      <ion-item-sliding *ngFor="let item of items">
-        <ion-item>
+      <div *ngFor="let item of items">
           <ion-card>
-              <div class="card-title">{{item.title}}</div>
-              <img [src]="item.icon" (click)="show()" />
+              <ion-item>
+                <ion-avatar item-start>
+                  <img [src]="item.icon" (click)="show()" />
+                </ion-avatar>
+                <h2>{{item.title}}</h2>
+              </ion-item>
               
-              <ion-fab right bottom>
-                  <button ion-fab (click)="edit()">
-                  <ion-icon name="brush"></ion-icon>
-                </button>
-              </ion-fab>
+              <ion-card-content>
+                  <p>XD</p>
+              </ion-card-content>
           </ion-card>
-
-        </ion-item>
-      </ion-item-sliding>
+      </div>
   </ion-list>
 </ion-content>
