@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      List
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <ion-item-sliding *ngFor="let item of items">
+        <ion-item>
+          <ion-card>
+              <div class="card-title">{{item.title}}</div>
+              <img [src]="item.icon" (click)="show()" />
+              
+              <ion-fab right bottom>
+                  <button ion-fab (click)="edit()">
+                  <ion-icon name="brush"></ion-icon>
+                </button>
+              </ion-fab>
+          </ion-card>
+
+        </ion-item>
+      </ion-item-sliding>
+  </ion-list>
+</ion-content>
