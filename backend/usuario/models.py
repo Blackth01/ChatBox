@@ -5,6 +5,7 @@ from django.db import models
 class Usuario(models.Model):
 	nome = models.CharField(max_length=64, unique=True)
 	senha = models.CharField(max_length=120)
+	descricao = models.CharField(max_length=500)
 	admin = models.BooleanField(default=False)
 
 	def __str__(self):
