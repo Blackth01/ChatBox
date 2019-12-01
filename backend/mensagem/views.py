@@ -40,7 +40,7 @@ def get_by_sala(request, id_sala):
 	if request.method == 'GET':
 		sala_id = id_sala
 		
-		mensagens = Mensagem.objects.filter(sala__id=sala_id).order_by('-data_envio')[:10]
+		mensagens = Mensagem.objects.filter(sala__id=sala_id).order_by('-id')[:10]
 
 		lista = []
 		for mensagem in mensagens:
@@ -49,6 +49,7 @@ def get_by_sala(request, id_sala):
 			dicionario['conteudo'] = mensagem.conteudo
 			dicionario['data_envio'] = mensagem.data_envio
 			dicionario['id_remetente'] = mensagem.remetente.id
+			dicionario['nome_remetente'] = mensagem.remetente.nome
 			lista.append(dicionario)
 
 		return JsonResponse({'mensagens':lista})
