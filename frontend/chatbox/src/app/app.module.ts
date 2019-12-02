@@ -20,6 +20,8 @@ import { JwtInterceptorService } from './shared/JWT/jwt-interceptor.service';
 import { SalaListComponent } from './resources/sala/sala-list/sala-list.component';
 import { SalaEditComponent } from './resources/sala/sala-edit/sala-edit.component';
 import { ParticleComponent } from './particle/particle.component';
+import { MensagemEditComponent } from './resources/mensagem/mensagem-edit/mensagem-edit.component';
+import { MensagemListComponent } from './resources/mensagem/mensagem-list/mensagem-list.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { ParticleComponent } from './particle/particle.component';
     UsuarioLoginComponent,
     SalaListComponent,
     SalaEditComponent,
+    MensagemEditComponent,
+    MensagemListComponent,
     HomePage,
     ParticleComponent
   ],

@@ -1,0 +1,9 @@
+<br>
+<ion-card style="background-color: black;color:white;">
+  <form #mensagemForm="ngForm" (ngSubmit)="save(mensagemForm.value)">
+      <ion-item>
+        <ion-input placeholder="Digite alguma coisa" [(ngModel)]="mensagem.conteudo"
+              required name="conteudo" #conteudo></ion-input>
+      </ion-item>
+  </form>
+</ion-card>

@@ -9,6 +9,8 @@ import { HomePage } from './home/home.page';
 import { HomePageModule } from './home/home.module';
 import { SalaEditComponent } from './resources/sala/sala-edit/sala-edit.component';
 import { SalaListComponent } from './resources/sala/sala-list/sala-list.component';
+import { MensagemEditComponent } from './resources/mensagem/mensagem-edit/mensagem-edit.component';
+import { MensagemListComponent } from './resources/mensagem/mensagem-list/mensagem-list.component';
 
 const routes: Routes = [
   {
@@ -49,6 +51,14 @@ const routes: Routes = [
   {
     path: 'sala-list/:id',
     component: SalaListComponent
+  },
+  {
+    path: 'mensagem-add/:id',
+    component: MensagemEditComponent
+  },
+  {
+    path: 'mensagem-list/:id',
+    component: MensagemListComponent
   },
 ];
 
