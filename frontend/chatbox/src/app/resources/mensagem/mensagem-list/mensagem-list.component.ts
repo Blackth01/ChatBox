@@ -37,10 +37,18 @@ export class MensagemListComponent implements OnInit {
         })
       }
     });
+    //this.pingMensages();
+  }
+
+  pingMensages(){
+    setInterval(function(){ 
+      alert("Hello"); }, 
+      1000
+    );
   }
 
   get($event){
-    console.log($event)
+    this.mensagens.unshift($event)
   }
 
   move(id) {
