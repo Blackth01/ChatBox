@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 })
 export class SalaListComponent implements OnInit {
   salas:Array<any> = []
+  id_categoria:any = 0
   sub:     Subscription;
   
   constructor(
@@ -22,20 +23,23 @@ export class SalaListComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
+      this.id_categoria = id;
       if (id) {
         this.salaService.getAll(id).subscribe(data=>{
-          this.salas = data;
-    
+          this.salas = data.salas;
+
           for(let sala of this.salas){
             let url = this.giphyService.get(sala.nome);
+            sala.categoria_id = this.id_categoria;
             url.subscribe(url => sala.icon = url);
           }
         })
       }
     });
+  }
 
-
-    
+  move(id) {
+    this.router.navigate(['/mensagem-list',id]);
   }
 
 }

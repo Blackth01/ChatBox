@@ -27,7 +27,7 @@ export class CategoriaListComponent implements OnInit {
   }
 
   move(id) {
-    this.router.navigate(['/sala-list/',id]);
+    this.router.navigate(['/sala-list',id]);
   }
 
 }

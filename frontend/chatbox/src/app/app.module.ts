@@ -5,6 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ParticlesModule } from 'angular-particle';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +19,7 @@ import { HomePage } from './home/home.page';
 import { JwtInterceptorService } from './shared/JWT/jwt-interceptor.service';
 import { SalaListComponent } from './resources/sala/sala-list/sala-list.component';
 import { SalaEditComponent } from './resources/sala/sala-edit/sala-edit.component';
+import { ParticleComponent } from './particle/particle.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +30,14 @@ import { SalaEditComponent } from './resources/sala/sala-edit/sala-edit.componen
     UsuarioLoginComponent,
     SalaListComponent,
     SalaEditComponent,
-    HomePage
+    HomePage,
+    ParticleComponent
   ],
   entryComponents: [],
   imports: [
     BrowserModule,
     FormsModule,
+    ParticlesModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule

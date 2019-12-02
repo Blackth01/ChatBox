@@ -1,8 +1,8 @@
 <div *ngFor="let categoria of categorias">
-    <ion-card (click)="move(categoria.categoria_id)">
+    <ion-card (click)="move(categoria.id)">
         <ion-item>
           <ion-avatar item-start>
-            <img [src]="categoria.icon" (click)="show()" />
+            <img [src]="categoria.icon" />
           </ion-avatar>
           <h2>{{categoria.nome}}</h2>
         </ion-item>

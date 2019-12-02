@@ -13,7 +13,7 @@ export class SalaService {
   constructor(private http: HttpClient) {}
 
   getAll(id): Observable<any> {
-    return this.http.get(this.SALA_API + '/listar/' + id);
+    return this.http.get(this.SALA_API + '/listar/categoria/' + id);
   }
 
   get(id: string) {

@@ -1,3 +1,37 @@
-<p>
-  sala-edit works!
-</p>
+<div *ngIf="error" class="alert alert-warning" role="alert">
+  {{error}}
+</div>
+
+<form #salaForm="ngForm" (ngSubmit)="save(salaForm.value)">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        <h2>{{sala.nome ? 'Edit' : 'Add'}} sala</h2>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card-content>
+    <ion-input type="hidden" name="categoria_id" [(ngModel)]="sala.categoria_id"></ion-input>
+
+    <ion-item>
+      <ion-input placeholder="nome" [(ngModel)]="sala.nome"
+            required name="nome" #nome></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="senha" [(ngModel)]="sala.senha"
+            required name="senha" #senha></ion-input>
+    </ion-item>
+  </ion-card-content>
+
+    <button ion-button color="primary" type="submit"
+            [disabled]="!salaForm.form.valid">Save</button>
+    <button ion-button color="secondary" (click)="remove(sala.href)"
+            *ngIf="sala.href" type="button">Delete</button>
+    <a ion-button routerLink="/sala-list">Cancel</a>
+
+</form>

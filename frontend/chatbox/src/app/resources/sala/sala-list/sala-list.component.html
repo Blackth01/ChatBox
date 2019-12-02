@@ -1,14 +1,33 @@
-<div *ngFor="let sala of salas">
-  <ion-card (click)="move()">
-      <ion-item>
-        <ion-avatar item-start>
-          <img [src]="sala.icon" (click)="show()" />
-        </ion-avatar>
-        <h2>{{sala.nome}}</h2>
-      </ion-item>
-      
-      <ion-card-content>
-          <p>{{sala.senha}}</p>
-      </ion-card-content>
-  </ion-card>
-</div>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Salas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngFor="let sala of salas">
+      <ion-card (click)="move(sala.id)">
+          <ion-item>
+            <ion-avatar item-start>
+              <img [src]="sala.icon" (click)="show()" />
+            </ion-avatar>
+            <h2>{{sala.nome}}</h2>
+          </ion-item>
+          
+          <ion-card-content>
+              <p>{{sala.senha}}</p>
+          </ion-card-content>
+      </ion-card>
+    </div>
+
+  <ion-fab>
+    <ion-fab-button color="primary" [routerLink]="['/sala-add',id_categoria]">Add</ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<app-particle></app-particle>

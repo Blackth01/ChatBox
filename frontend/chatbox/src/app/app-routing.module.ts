@@ -43,7 +43,7 @@ const routes: Routes = [
     component: UsuarioLoginComponent
   },
   {
-    path: 'sala-add',
+    path: 'sala-add/:id',
     component: SalaEditComponent
   },
   {
