@@ -19,4 +19,6 @@
     </div>
 </ion-content>
 
-<app-mensagem-edit></app-mensagem-edit>
+<div *ngIf = "isLoaded">
+  <app-mensagem-edit [sala_id]="sala_id" (mensagem)="get($event)"></app-mensagem-edit>
+</div>

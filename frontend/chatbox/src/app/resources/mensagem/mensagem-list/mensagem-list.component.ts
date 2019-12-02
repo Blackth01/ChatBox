@@ -12,6 +12,8 @@ import { MensagemService } from 'src/app/shared/mensagem/mensagem.service';
 export class MensagemListComponent implements OnInit {
   mensagens:Array<any> = []
   sub:     Subscription;
+  sala_id:any;
+  isLoaded = false;
   
   constructor(
     private route: ActivatedRoute,
@@ -27,15 +29,18 @@ export class MensagemListComponent implements OnInit {
           console.log(data.mensagens)
           this.mensagens = data.mensagens;
 
-          /*
           for(let mensagem of this.mensagens){
-            let url = this.giphyService.get(sala.nome);
-            sala.categoria_id = this.id_categoria;
-            url.subscribe(url => sala.icon = url);
-          }*/
+            this.sala_id = id;
+            mensagem.sala_id = id;
+          }
+          this.isLoaded = true;
         })
       }
     });
+  }
+
+  get($event){
+    console.log($event)
   }
 
   move(id) {
