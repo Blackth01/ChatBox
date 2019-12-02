@@ -69,6 +69,7 @@ def get_latest_by_id(request, id_sala, mensagem_id):
 			dicionario['conteudo'] = mensagem.conteudo
 			dicionario['data_envio'] = mensagem.data_envio
 			dicionario['id_remetente'] = mensagem.remetente.id
+			dicionario['nome_remetente'] = mensagem.remetente.nome
 			lista.append(dicionario)
 
 		return JsonResponse({'mensagens':lista})
