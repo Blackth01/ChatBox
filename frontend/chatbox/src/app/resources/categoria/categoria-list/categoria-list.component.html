@@ -1,0 +1,14 @@
+<div *ngFor="let categoria of categorias">
+    <ion-card (click)="move(categoria.categoria_id)">
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="categoria.icon" (click)="show()" />
+          </ion-avatar>
+          <h2>{{categoria.nome}}</h2>
+        </ion-item>
+        
+        <ion-card-content>
+            <p>{{categoria.descricao}}</p>
+        </ion-card-content>
+    </ion-card>
+</div>

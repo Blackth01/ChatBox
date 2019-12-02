@@ -1,0 +1,53 @@
+<div *ngIf="error" class="alert alert-warning" role="alert">
+    {{error}}
+</div>
+
+<form #usuarioForm="ngForm" (ngSubmit)="save(usuarioForm.value)">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        <h2>{{usuario.nome ? 'Edit' : 'Add'}} Usuario</h2>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card-content>
+    <ion-input type="hidden" name="href" [(ngModel)]="usuario.href"></ion-input>
+
+    <ion-item>
+      <ion-input placeholder="nome" [(ngModel)]="usuario.nome"
+            required name="nome" #nome></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="senha1" [(ngModel)]="usuario.senha1"
+            required name="senha1" #senha1></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input type="password" placeholder="senha2" [(ngModel)]="usuario.senha2"
+            required name="senha2" #senha2></ion-input>
+    </ion-item>
+
+    <!--
+    <ion-item>
+      <ion-input placeholder="email" [(ngModel)]="usuario.email"
+            required name="email" #email></ion-input>
+    </ion-item>-->
+
+    <ion-item>
+      <ion-textarea placeholder="descrição" 
+            required name="descricao" [(ngModel)]="usuario.descricao">...</ion-textarea>
+    </ion-item>
+  </ion-card-content>
+
+    <button ion-button color="primary" type="submit"
+            [disabled]="!usuarioForm.form.valid">Save</button>
+    <button ion-button color="secondary" (click)="remove(usuario.href)"
+            *ngIf="usuario.href" type="button">Delete</button>
+    <a ion-button routerLink="/usuario-list">Cancel</a>
+
+</form>

@@ -20,6 +20,16 @@ export class AppComponent {
       title: 'List',
       url: '/list',
       icon: 'list'
+    },
+    {
+      title: 'Login',
+      url: '/usuario-login',
+      icon: 'login'
+    },
+    {
+      title: 'Cadastro',
+      url: '/usuario-add',
+      icon: 'add'
     }
   ];
 

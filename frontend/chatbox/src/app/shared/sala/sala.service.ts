@@ -6,27 +6,27 @@ import { Observable } from 'rxjs/internal/Observable';
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class SalaService {
   public API = environment.url;
-  public USUARIO_API = this.API + '/usuario';
+  public SALA_API = this.API + '/sala';
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<any> {
-    return this.http.get(this.USUARIO_API + '/');
+  getAll(id): Observable<any> {
+    return this.http.get(this.SALA_API + '/listar/' + id);
   }
 
   get(id: string) {
-    return this.http.get(this.USUARIO_API + '/' + id);
+    return this.http.get(this.SALA_API + '/' + id);
   }
 
-  save(usuario: any): Observable<any> { 
+  save(SALA: any): Observable<any> { 
     let result: Observable<Object>;
 
-    if (usuario['id']) {
-      result = this.http.put(this.USUARIO_API + "/" + usuario.id, usuario);
+    if (SALA['id']) {
+      result = this.http.put(this.SALA_API + "/" + SALA.id, SALA);
     } else {
-      result = this.http.post(this.USUARIO_API + "/registrar/", usuario);
+      result = this.http.post(this.SALA_API + "/registrar/", SALA);
     }
     return result;
   }

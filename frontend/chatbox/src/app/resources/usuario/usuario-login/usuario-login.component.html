@@ -1,0 +1,41 @@
+
+<span *ngIf="error">
+  <div *ngIf="error['status'] == 400" class="alert alert-warning" role="alert">
+      Por favor verifique o login digitado
+  </div>
+</span>
+
+<div *ngIf="usuario.user_name" class="alert alert-warning" role="alert">
+  Usuario já esta logado.
+</div>
+<!--error['status']-->
+<ion-card>
+      <form #usuarioForm="ngForm" (ngSubmit)="onSubmit(usuarioForm.value)">
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+            <ion-title>
+              <h2>Entrar</h2>
+            </ion-title>
+          </ion-toolbar>
+        </ion-header>
+  
+        <ion-card-content>
+          <ion-item>
+            <ion-input placeholder="email" [(ngModel)]="usuario.email"
+                  required name="email" #email></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="password" placeholder="senha" [(ngModel)]="usuario.senha"
+                  required name="senha" #senha>
+            </ion-input>
+          </ion-item>
+        </ion-card-content>
+
+        <button mat-raised-button color="primary" type="submit"
+                  [disabled]="!usuarioForm.form.valid">Entrar</button>
+      </form>
+</ion-card>

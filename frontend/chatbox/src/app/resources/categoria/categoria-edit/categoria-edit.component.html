@@ -1,0 +1,43 @@
+<div *ngIf="error" class="alert alert-warning" role="alert">
+  {{error}}
+</div>
+
+<form #categoriaForm="ngForm" (ngSubmit)="save(categoriaForm.value)">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        <h2>{{categoria.nome ? 'Edit' : 'Add'}} categoria</h2>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card-content>
+    <ion-input type="hidden" name="href" [(ngModel)]="categoria.href"></ion-input>
+
+    <ion-item>
+      <ion-input placeholder="nome" [(ngModel)]="categoria.nome"
+            required name="nome" #nome></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea placeholder="descrição" 
+              required name="descricao" [(ngModel)]="categoria.descricao">...</ion-textarea>
+    </ion-item>
+
+    <!--
+    <ion-item>
+      <ion-input placeholder="email" [(ngModel)]="categoria.email"
+            required name="email" #email></ion-input>
+    </ion-item>-->
+  </ion-card-content>
+
+    <button ion-button color="primary" type="submit"
+            [disabled]="!categoriaForm.form.valid">Save</button>
+    <button ion-button color="secondary" (click)="remove(categoria.href)"
+            *ngIf="categoria.href" type="button">Delete</button>
+    <a ion-button routerLink="/categoria-list">Cancel</a>
+
+</form>

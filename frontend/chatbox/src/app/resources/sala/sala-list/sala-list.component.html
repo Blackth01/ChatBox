@@ -1,0 +1,14 @@
+<div *ngFor="let sala of salas">
+  <ion-card (click)="move()">
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="sala.icon" (click)="show()" />
+        </ion-avatar>
+        <h2>{{sala.nome}}</h2>
+      </ion-item>
+      
+      <ion-card-content>
+          <p>{{sala.senha}}</p>
+      </ion-card-content>
+  </ion-card>
+</div>
