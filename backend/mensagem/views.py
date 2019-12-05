@@ -23,6 +23,8 @@ class Mensagem_view(APIView):
 		conteudo_msg = conteudo['conteudo']
 		sala_id = conteudo['sala_id']
 
+		print(conteudo)
+		print("###############")
 		sala = Sala.objects.filter(id=sala_id).first()
 
 		if sala is None:
@@ -33,7 +35,7 @@ class Mensagem_view(APIView):
 
 		mensagem.save()
 
-		return JsonResponse({'sucesso':1, 'id_gerado':mensagem.id})
+		return JsonResponse({'sucesso':1, 'id_gerado':mensagem.id, 'username':usuario.nome, 'mensagem':conteudo_msg})
 
 @csrf_exempt
 def get_by_sala(request, id_sala):
