@@ -44,26 +44,29 @@ export class MensagemListComponent implements OnInit {
 
           for(let mensagem of res.mensagens){
             this.sala_id = id;
-            this.giphyService.get(mensagem.nome_remetente).subscribe(url=>{mensagem.url = url;});
             mensagem.sala_id = id;
-
-            if(this.mensagens.length == 0){
-              this.mensagens = res.mensagens;
-            }else{
-              let result = this.procurarDiferenca(this.mensagens,res.mensagens);
-              this.mensagens.concat(result)
-            }   
+            this.mensagens = res.mensagens;
+            //this.giphyService.get(mensagem.nome_remetente).subscribe(url=>{mensagem.url = url;});
           }
-          
           this.isLoaded = true;
         });
       }
     });
   }
 
-  procurarDiferenca(A:any,B:any){
-    return A.filter(item1 => !B.some(item2 => (item2.id === item1.id)))
-  }
+  /*
+    if(this.lastId){
+              for(let mensagem of res.mensagens){
+                this.sala_id = id;
+                mensagem.sala_id = id;
+                //this.giphyService.get(mensagem.nome_remetente).subscribe(url=>{mensagem.url = url;});
+              }
+              this.mensagens = res.mensagens;
+              this.isLoaded = true;
+            }else{
+              this.lastId = res.mensagens[res.mensagens.length - 1].id;
+            }
+  */
 
   get($event){
     this.mensagens.unshift($event)
