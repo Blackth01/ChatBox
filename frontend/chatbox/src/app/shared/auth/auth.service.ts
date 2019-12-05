@@ -30,8 +30,8 @@ export class AuthService {
 
   authenticate(payload) {
     const headers = {
-      'Authorization': 'Basic ' + btoa(this.CLIENT+':'+this.SECRET),
-      'Content-type':  'application/x-www-form-urlencoded',
+      //'Authorization': 'Basic ' + btoa(this.CLIENT+':'+this.SECRET),
+      'Content-Type':  'application/json',
       //'Origen': this.ORIGIN
     }
 

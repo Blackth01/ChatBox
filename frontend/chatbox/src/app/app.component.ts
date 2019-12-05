@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthService } from './shared/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -17,14 +18,9 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
-    },
-    {
       title: 'Login',
       url: '/usuario-login',
-      icon: 'login'
+      icon: 'book'
     },
     {
       title: 'Cadastro',
@@ -33,11 +29,17 @@ export class AppComponent {
     }
   ];
 
+  currentUser: any = {};
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private authService: AuthService
   ) {
+    this.authService.currentUser.subscribe(user => {
+      this.currentUser = user;
+    });
     this.initializeApp();
   }
 

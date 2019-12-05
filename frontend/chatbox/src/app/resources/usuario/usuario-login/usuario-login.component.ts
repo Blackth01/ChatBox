@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { HttpParams, HttpResponse } from '@angular/common/http';
 import { AuthService } from '../../../shared/auth/auth.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -20,10 +21,12 @@ export class UsuarioLoginComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService) {
+    private authService: AuthService,
+    public alertController: AlertController) {
   }
 
   ngOnInit() {
+    
     if(this.router.url == '/usuario-logout'){
       this.logout() 
     }
@@ -39,9 +42,9 @@ export class UsuarioLoginComponent implements OnInit {
       .set('username', usuario.email)
       .set('password', usuario.senha)
       .set('grant_type', 'password');
-      
-      this.loading = true;
-      this.authService.authenticate(payload)
+
+      this.loading = true;//payload
+      this.authService.authenticate({username:usuario.email,password:usuario.senha})
           .pipe(first())
           .subscribe(
               data => {

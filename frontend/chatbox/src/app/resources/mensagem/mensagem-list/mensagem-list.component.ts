@@ -3,6 +3,9 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GiphyService } from 'src/app/shared/giphy/giphy.service';
 import { MensagemService } from 'src/app/shared/mensagem/mensagem.service';
+import { interval } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
+import { AuthService } from 'src/app/shared/auth/auth.service';
 
 @Component({
   selector: 'app-mensagem-list',
@@ -19,12 +22,29 @@ export class MensagemListComponent implements OnInit {
     private route: ActivatedRoute,
     private mensagenservice:MensagemService,
     private giphyService:GiphyService,
-    private router: Router) { }
+    private router: Router,
+    private auth:AuthService) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
       if (id) {
+        interval(1000)
+        .pipe(
+          startWith(0),
+          switchMap(() => this.mensagenservice.getAll(id))
+        )
+        .subscribe(res =>{
+          this.mensagens = res.mensagens;
+
+          for(let mensagem of this.mensagens){
+            this.sala_id = id;
+            mensagem.sala_id = id;
+          }
+          this.isLoaded = true;
+        });
+
+        /*
         this.mensagenservice.getAll(id).subscribe(data=>{
           console.log(data.mensagens)
           this.mensagens = data.mensagens;
@@ -34,7 +54,7 @@ export class MensagemListComponent implements OnInit {
             mensagem.sala_id = id;
           }
           this.isLoaded = true;
-        })
+        })*/
       }
     });
     //this.pingMensages();

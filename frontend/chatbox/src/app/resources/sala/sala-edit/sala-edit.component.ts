@@ -15,7 +15,7 @@ export class SalaEditComponent implements OnInit {
   error:   any;
   sala: any = {};
   sub:     Subscription;
-  id_categoria:any = 0
+  id_categoria:any = 1;
 
   constructor(
               private route: ActivatedRoute,
@@ -37,11 +37,11 @@ export class SalaEditComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    //this.sub.unsubscribe();
+    this.sub.unsubscribe();
   }
 
   move() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/sala-list',this.id_categoria]);
   }
 
   save(form: NgForm) {

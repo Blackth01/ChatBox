@@ -27,7 +27,7 @@ export class SalaListComponent implements OnInit {
       if (id) {
         this.salaService.getAll(id).subscribe(data=>{
           this.salas = data.salas;
-
+          
           for(let sala of this.salas){
             let url = this.giphyService.get(sala.nome);
             sala.categoria_id = this.id_categoria;

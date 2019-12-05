@@ -1,15 +1,16 @@
 
-<span *ngIf="error">
-  <div *ngIf="error['status'] == 400" class="alert alert-warning" role="alert">
-      Por favor verifique o login digitado
-  </div>
-</span>
-
-<div *ngIf="usuario.user_name" class="alert alert-warning" role="alert">
-  Usuario já esta logado.
-</div>
-<!--error['status']-->
 <ion-card>
+      <span *ngIf="error">
+        <div *ngIf="error['status'] == 400" class="alert alert-warning" role="alert">
+            Por favor verifique o login digitado
+        </div>
+      </span>
+
+      <div *ngIf="usuario.user_name" class="alert alert-warning" role="alert">
+        Usuario já esta logado.
+      </div>
+      <!--error['status']-->
+
       <form #usuarioForm="ngForm" (ngSubmit)="onSubmit(usuarioForm.value)">
         <ion-header>
           <ion-toolbar>

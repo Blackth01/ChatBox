@@ -17,7 +17,8 @@ export class JwtInterceptorService {
     const isLoggedIn = currentUser && currentUser.token;
     const isApiUrl = request.url.search(environment.url) != -1;
 
-    if (isLoggedIn && isApiUrl) {
+    
+    if (isLoggedIn && isApiUrl) { 
       request = request.clone({
           setHeaders: {
             'Content-Type': 'application/json',
