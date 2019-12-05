@@ -6,6 +6,7 @@ import { MensagemService } from 'src/app/shared/mensagem/mensagem.service';
 import { interval } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/auth/auth.service';
+import { UsuarioService } from 'src/app/shared/usuario/usuario.service';
 
 @Component({
   selector: 'app-mensagem-list',
@@ -16,16 +17,20 @@ export class MensagemListComponent implements OnInit {
   mensagens:Array<any> = []
   sub:     Subscription;
   sala_id:any;
+  lastId;
   isLoaded = false;
+  user:any = {}
   
   constructor(
     private route: ActivatedRoute,
     private mensagenservice:MensagemService,
     private giphyService:GiphyService,
+    //private usuarioService:UsuarioService,
     private router: Router,
     private auth:AuthService) { }
 
   ngOnInit() {
+    this.user = this.auth.currentUserValue
     this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
       if (id) {
@@ -35,37 +40,33 @@ export class MensagemListComponent implements OnInit {
           switchMap(() => this.mensagenservice.getAll(id))
         )
         .subscribe(res =>{
-          this.mensagens = res.mensagens;
+          this.lastId = res.mensagens[res.mensagens.length - 1].id;
 
-          for(let mensagem of this.mensagens){
+          for(let mensagem of res.mensagens){
             this.sala_id = id;
             mensagem.sala_id = id;
+            this.mensagens = res.mensagens;
+            //this.giphyService.get(mensagem.nome_remetente).subscribe(url=>{mensagem.url = url;});
           }
           this.isLoaded = true;
         });
-
-        /*
-        this.mensagenservice.getAll(id).subscribe(data=>{
-          console.log(data.mensagens)
-          this.mensagens = data.mensagens;
-
-          for(let mensagem of this.mensagens){
-            this.sala_id = id;
-            mensagem.sala_id = id;
-          }
-          this.isLoaded = true;
-        })*/
       }
     });
-    //this.pingMensages();
   }
 
-  pingMensages(){
-    setInterval(function(){ 
-      alert("Hello"); }, 
-      1000
-    );
-  }
+  /*
+    if(this.lastId){
+              for(let mensagem of res.mensagens){
+                this.sala_id = id;
+                mensagem.sala_id = id;
+                //this.giphyService.get(mensagem.nome_remetente).subscribe(url=>{mensagem.url = url;});
+              }
+              this.mensagens = res.mensagens;
+              this.isLoaded = true;
+            }else{
+              this.lastId = res.mensagens[res.mensagens.length - 1].id;
+            }
+  */
 
   get($event){
     this.mensagens.unshift($event)

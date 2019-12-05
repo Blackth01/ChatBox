@@ -11,9 +11,16 @@
 
 <ion-content>
     <div *ngFor="let mensagem of mensagens">
-      <ion-card>
+      <ion-card *ngIf="user.user_id != mensagem.id_remetente" style="background-color: lightgreen;color:white;max-width: 80%;margin-left:20%;">
+          <ion-card-content >
+            <p>{{mensagem.conteudo}}</p>
+          </ion-card-content> 
+      </ion-card>
+
+
+      <ion-card *ngIf="user.user_id == mensagem.id_remetente" style="background-color: white;">
           <ion-card-content>
-              <p>{{mensagem.conteudo}}</p>
+            <p>{{mensagem.conteudo}}</p>
           </ion-card-content>
       </ion-card>
     </div>
