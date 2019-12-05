@@ -9,23 +9,60 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
-    <div *ngFor="let mensagem of mensagens">
-      <ion-card *ngIf="user.user_id != mensagem.id_remetente" style="background-color: lightgreen;color:white;max-width: 80%;margin-left:20%;">
-          <ion-card-content >
-            <p>{{mensagem.conteudo}}</p>
-          </ion-card-content> 
-      </ion-card>
+  <div *ngFor="let mensagem of mensagens">
+    <ion-card *ngIf="user.user_id == mensagem.id_remetente" class="green-message">
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="mensagem.url" />
+        </ion-avatar>
+        <p> {{mensagem.conteudo}}</p>
+      </ion-item>
+    </ion-card>
 
-
-      <ion-card *ngIf="user.user_id == mensagem.id_remetente" style="background-color: white;">
-          <ion-card-content>
-            <p>{{mensagem.conteudo}}</p>
-          </ion-card-content>
-      </ion-card>
-    </div>
+    <ion-card *ngIf="user.user_id != mensagem.id_remetente" class="white-message">
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="mensagem.url" />
+        </ion-avatar>
+        <p> {{mensagem.conteudo}}</p>
+      </ion-item>
+    </ion-card>
+  </div>
 </ion-content>
-
+  
 <div *ngIf = "isLoaded">
   <app-mensagem-edit [sala_id]="sala_id" (mensagem)="get($event)"></app-mensagem-edit>
 </div>
+
+<!--
+<div *ngFor="let mensagem of mensagens">
+    <ion-card *ngIf="user.user_id == mensagem.id_remetente" style="background-color: lightgreen;color:white;max-width: 80%;margin-left:20%;">
+        <ion-card-content >
+          <p>{{mensagem.conteudo}}</p>
+        </ion-card-content> 
+    </ion-card>
+
+
+    <ion-card *ngIf="user.user_id != mensagem.id_remetente" style="background-color: white;max-width: 95%;margin-left:5%;">
+        <ion-card-content>
+          <p>{{mensagem.conteudo}}</p>
+        </ion-card-content>
+    </ion-card>
+</div>
+-->
+
+<!--
+  <ion-card (click)="move(categoria.id)">
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="categoria.icon" />
+          </ion-avatar>
+          <h2>{{categoria.nome}}</h2>
+        </ion-item>
+        
+        <ion-card-content>
+            <p>{{categoria.descricao}}</p>
+        </ion-card-content>
+    </ion-card>-->
